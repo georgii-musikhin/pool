@@ -13,7 +13,7 @@ public class User {
     /**
      * User id.
      */
-    private Long id;
+    private Long userId;
 
     /**
      * User pools.

@@ -9,6 +9,11 @@ import lombok.Data;
 public class Question {
 
     /**
+     * Identifier of the question.
+     */
+    private Long questionId;
+
+    /**
      * Text of the question.
      */
     private String questionText;
@@ -25,14 +30,20 @@ public class Question {
         /**
          * Full question question type.
          */
-        FULL_QUESTION,
+        FULL_QUESTION(0L),
         /**
          * Closed question question type.
          */
-        CLOSED_QUESTION,
+        CLOSED_QUESTION(1L),
         /**
          * Multiple choice question question type.
          */
-        MULTIPLE_CHOICE_QUESTION
+        MULTIPLE_CHOICE_QUESTION(2L);
+
+        private Long id;
+
+        QuestionType(Long id) {
+            this.id = id;
+        }
     }
 }

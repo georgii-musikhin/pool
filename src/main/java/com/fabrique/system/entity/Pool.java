@@ -14,6 +14,11 @@ import java.util.List;
 public class Pool {
 
     /**
+     * Identifier of the pool.
+     */
+    private Long poolId;
+
+    /**
      * Name of the pool.
      */
     private String name;
