@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/test;MODE=PostgreSQL
+    username: user
+    password: password
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+
+logging:
+  level:
+    com.fabrique.system: ${LOG_LEVEL:DEBUG}

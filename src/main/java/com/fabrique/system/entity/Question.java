@@ -1,11 +1,15 @@
 package com.fabrique.system.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The type Question.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 
     /**
@@ -19,31 +23,12 @@ public class Question {
     private String questionText;
 
     /**
-     * Type of the question.
+     * Identifier of type of the question.
      */
-    private QuestionType questionType;
+    private Long questionType;
 
     /**
-     * The enum Question type.
+     * Identifier of the pool.
      */
-    public enum QuestionType {
-        /**
-         * Full question question type.
-         */
-        FULL_QUESTION(0L),
-        /**
-         * Closed question question type.
-         */
-        CLOSED_QUESTION(1L),
-        /**
-         * Multiple choice question question type.
-         */
-        MULTIPLE_CHOICE_QUESTION(2L);
-
-        private Long id;
-
-        QuestionType(Long id) {
-            this.id = id;
-        }
-    }
+    private Long poolId;
 }
