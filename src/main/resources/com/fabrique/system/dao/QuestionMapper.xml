@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fabrique.system.dao.QuestionMapper">
+    <update id="updateQuestion">
+        UPDATE question
+            SET
+            <if test="questionText != null">
+                question_text = #{questionText},
+            </if>
+            <if test="questionType != null">
+                question_type = #{questionType},
+            </if>
+            <if test="poolId != null">
+                pool_id = #{poolId}
+            </if>
+        WHERE question_id = #{questionId}
+    </update>
+</mapper>
