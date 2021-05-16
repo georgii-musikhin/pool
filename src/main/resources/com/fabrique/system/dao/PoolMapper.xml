@@ -1,3 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fabrique.system.dao.PoolMapper">
+    <resultMap id="pool" type="com.fabrique.system.entity.Pool" autoMapping="true">
+        <id column="pool_id" property="poolId"/>
+        <result column="name" property="name"/>
+        <result column="create_date" property="createDate"/>
+        <result column="finish_date" property="finishDate"/>
+        <collection property="questionList" ofType="com.fabrique.system.entity.Question" autoMapping="true">
+            <id column="question_id" property="questionId"/>
+        </collection>
+    </resultMap>
+
+    <insert id="savePool">
+        INSERT INTO pool(name, create_date)
+            VALUES (#{name}, #{createDate})
+    </insert>
+
+    <select id="getPoolById" resultMap="pool">
+        SELECT p.pool_id, p.name, p.create_date, p.finish_date,
+               q.question_id, q.question_text, question_type, q.pool_id
+        FROM pool p
+            INNER JOIN question q on p.pool_id = q.pool_id
+        WHERE p.pool_id = #{poolId}
+    </select>
+
+    <select id="getAllPools" resultType="com.fabrique.system.entity.Pool">
+        SELECT p.pool_id, p.name, p.create_date, p.finish_date
+        FROM pool p
+    </select>
+
+    <update id="updatePool">
+        UPDATE pool
+        SET
+        <if test="name != null">
+            name = #{name},
+        </if>
+        <if test="createDate != null">
+            create_date = #{createDate},
+        </if>
+        <if test="finishDate != null">
+            finish_date = #{finishDate}
+        </if>
+        WHERE pool_id = #{poolId}
+    </update>
+</mapper>
