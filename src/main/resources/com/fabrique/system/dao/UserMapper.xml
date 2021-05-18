@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fabrique.system.dao.UserMapper">
+    <resultMap id="user" type="com.fabrique.system.entity.User" autoMapping="true">
+        <id column="user_id" property="userId"/>
+        <collection property="pools" ofType="com.fabrique.system.entity.Pool"
+                    resultMap="com.fabrique.system.dao.PoolMapper.pool"/>
+    </resultMap>
+
+    <insert id="saveUser" parameterType="com.fabrique.system.entity.User"
+            useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        INSERT INTO user_id(user_id)
+        VALUES (nextval('USER_SEQ'));
+    </insert>
+
+    <select id="getUserById" resultMap="user">
+        SELECT u.user_id,
+               p.pool_id,
+               p.name,
+               p.create_date,
+               p.finish_date,
+               q.question_id,
+               q.question_text,
+               question_type,
+               q.pool_id
+        FROM user_id u
+                     INNER JOIN pool_user pu on u.user_id = pu.user_id
+                     INNER JOIN pool p on p.pool_id = pu.pool_id
+                     INNER JOIN question q on p.pool_id = q.pool_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <select id="getAllUsers" resultType="com.fabrique.system.entity.User">
+        SELECT user_id
+        FROM user_id
+    </select>
+</mapper>
