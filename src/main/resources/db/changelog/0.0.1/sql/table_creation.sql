@@ -43,3 +43,13 @@ CREATE TABLE IF NOT EXISTS pool_user
     CONSTRAINT fk_pool_id FOREIGN KEY (pool_id) REFERENCES pool(pool_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_id(user_id)
 );
+
+CREATE TABLE IF NOT EXISTS answer
+(
+    question_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    answer TEXT,
+    CONSTRAINT pk_answer PRIMARY KEY (question_id, user_id),
+    CONSTRAINT fk_question_id FOREIGN KEY (question_id) REFERENCES question(question_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_id(user_id)
+);

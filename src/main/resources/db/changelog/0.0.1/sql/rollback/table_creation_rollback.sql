@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS answer;
+
 DROP TABLE IF EXISTS pool_user;
 
 DROP TABLE IF EXISTS user_id;
