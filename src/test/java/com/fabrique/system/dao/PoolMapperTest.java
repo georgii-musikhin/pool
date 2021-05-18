@@ -67,7 +67,6 @@ public class PoolMapperTest {
 
         List<Pool> actual = poolMapper.getAllPools();
 
-        assertEquals(2, actual.size());
         assertEquals(expected, actual);
     }
 
