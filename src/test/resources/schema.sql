@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS answer;
+
 DROP TABLE IF EXISTS pool_user;
 
 DROP TABLE IF EXISTS user_id;
@@ -59,4 +61,14 @@ create table if not exists POOL_USER
     constraint FK_USER_ID_1
         foreign key (USER_ID)
             references USER_ID (USER_ID)
+);
+
+CREATE TABLE IF NOT EXISTS answer
+(
+    question_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    answer TEXT,
+    CONSTRAINT pk_answer PRIMARY KEY (question_id, user_id),
+    CONSTRAINT fk_question_id FOREIGN KEY (question_id) REFERENCES question(question_id),
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_id(user_id)
 );

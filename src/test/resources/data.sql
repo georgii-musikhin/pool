@@ -9,3 +9,6 @@ INSERT INTO user_id(user_id) VALUES (nextval('user_seq'));
 
 INSERT INTO pool_user(pool_id, user_id) VALUES (1, 1);
 INSERT INTO pool_user(pool_id, user_id) VALUES (1, 2);
+
+INSERT INTO answer(question_id, user_id, answer) VALUES (1, 1, 'firstAnswer');
+INSERT INTO answer(question_id, user_id, answer) VALUES (1, 2, 'secondAnswer');
