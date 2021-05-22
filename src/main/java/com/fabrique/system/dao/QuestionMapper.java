@@ -28,6 +28,13 @@ public interface QuestionMapper {
     int saveQuestion(Question question);
 
     /**
+     * Save questions.
+     *
+     * @param questions the questions
+     */
+    void saveQuestions(@Param("list") List<Question> questions);
+
+    /**
      * Gets by id.
      *
      * @param questionId the question id

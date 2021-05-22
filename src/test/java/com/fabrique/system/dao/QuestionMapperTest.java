@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +64,20 @@ class QuestionMapperTest {
 
         int rowNumber = questionMapper.updateQuestion(questionToUpdate);
         assertEquals(rowNumber, 1);
+    }
+
+    @Test
+    public void testSaveQuestions() {
+        List<Question> questions = Arrays.asList(
+                new Question(null, "text1", 0L, 1L),
+                new Question(null, "text2", 1L, 1L),
+                new Question(null, "text3", 2L, 1L)
+        );
+
+        questionMapper.saveQuestions(questions);
+
+        assertEquals(questions.get(0).getQuestionId(), 3L);
+        assertEquals(questions.get(1).getQuestionId(), 4L);
+        assertEquals(questions.get(2).getQuestionId(), 5L);
     }
 }
