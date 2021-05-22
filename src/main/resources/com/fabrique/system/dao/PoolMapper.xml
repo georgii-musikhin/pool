@@ -8,7 +8,8 @@
         </collection>
     </resultMap>
 
-    <insert id="savePool">
+    <insert id="savePool" parameterType="com.fabrique.system.entity.Pool"
+            useGeneratedKeys="true" keyProperty="poolId">
         INSERT INTO pool(name, create_date)
         VALUES (#{name}, #{createDate})
     </insert>

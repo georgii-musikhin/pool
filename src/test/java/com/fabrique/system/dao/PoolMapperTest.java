@@ -35,9 +35,13 @@ public class PoolMapperTest {
         poolToSave.setName("testPool");
         poolToSave.setCreateDate(LocalDate.parse("2021-05-15"));
 
+
+        assertEquals(null, poolToSave.getPoolId());
+
         int rowAffected = poolMapper.savePool(poolToSave);
 
         assertEquals(1, rowAffected);
+        assertEquals(3L, poolToSave.getPoolId());
     }
 
     @Test
